@@ -12,4 +12,6 @@ client.on('message', message => {
 });
 
 client.login(process.env.BOT_TOKEN)
-	.catch(error => alert(error.message));
+	.catch((error) => {
+		console.error(error);
+	});
