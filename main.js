@@ -14,4 +14,4 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
-client.login(process.env.BOT_TOKEN).catch((error) => {console.error(error);});
+client.login(process.env.BOT_TOKEN).catch(console.error);;
