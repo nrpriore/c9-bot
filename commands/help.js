@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const prefix = process.env.PREFIX;
 
-exports = {
+module.exports = {
 	name: 'help',
 	description: 'Returns the list of possible commands.',
 	aliases: ['halp'],

@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports = {
+module.exports = {
 	name: 'ping',
 	description: 'Checks the bot/discord latency.',
 	aliases: ['commands'],
