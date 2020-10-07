@@ -1,4 +1,5 @@
 admin/
+.eslintrc.json
 
 # Logs
 logs
