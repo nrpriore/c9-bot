@@ -13,8 +13,9 @@ exports.init = function init(client) {
 	const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
 		const command = require(`./../commands/${file}`);
-		client.commands.set(file, command);
-		console.log('Adding command ' + file);
+		const commandName = file.split(".")[0];
+		client.commands.set(commandName, command);
+		console.log('Adding command ' + commandName);
 		console.log(command);
 	}
 	console.log(client.commands.size + ' commands registered.');
