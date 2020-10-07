@@ -1,5 +1,3 @@
-export default (client, message) => {
-	if (message.content === 'ping') {
-		message.reply('pong');
-	}
+module.exports = (message) => {
+	message.reply('pong');
 }

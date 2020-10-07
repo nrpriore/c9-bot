@@ -1,8 +1,8 @@
-import { Client } from 'discord.js';
-import { readdir } from "fs";
-const client = new Client();
+const Discord = require('discord.js');
+const fs = require("fs");
+const client = new Discord.Client();
 
-readdir("./events/", (err, files) => {
+fs.readdir("./events/", (err, files) => {
 	files.forEach((file) => {
 		const eventHandler = require(`./events/${file}`);
 		const eventName = file.split(".")[0];
