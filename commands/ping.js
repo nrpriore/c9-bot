@@ -1,3 +1,9 @@
+const Discord = require('discord.js');
+
+/**
+ * @param {Discord.Message} message
+**/
 module.exports = (message) => {
-	message.reply('pong');
-}
+	message.edit('pong!');
+	message.channel.send(message.createdTimestamp);
+};
