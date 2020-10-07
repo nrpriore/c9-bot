@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'ping',
 	description: 'Checks the bot/discord latency.',
-	aliases: ['commands'],
+	aliases: ['beep'],
 
 	/**
 	 * Checks the bot/discord latency
@@ -11,18 +11,19 @@ module.exports = {
 	 * @param {string[]} args
 	**/
 	execute(message, args) {
-		var timer = message.createdTimestamp;
-		var ret = '';
-		if(args[0] === 'ping') {
+		const commandName = args.shift().toLowerCase();
+		var ret;
+		if(commandName === 'ping') {
 			ret = 'Pong';
 		}
-		else if(args[0] === 'beep') {
+		else if(commandName === 'beep') {
 			ret = 'Boop';
 		}
 
+		var timer = message.createdTimestamp;
 		message.channel.send('Questioning my reality...')
 			.then(function(pong) {
-				timer = timer - pong.createdTimestamp;
+				timer = pong.createdTimestamp - timer;
 				pong.edit(ret + '! (' + timer + 'ms)')
 			})
 			.catch(error => {console.error(error)});

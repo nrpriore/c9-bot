@@ -4,7 +4,7 @@ const prefix = process.env.PREFIX;
 module.exports = {
 	name: 'help',
 	description: 'Returns the list of possible commands.',
-	aliases: ['halp'],
+	aliases: ['halp', 'commands'],
 
 	/**
 	 * Returns the list of possible commands
