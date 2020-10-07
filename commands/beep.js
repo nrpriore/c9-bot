@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-	name: 'ping',
+	name: 'beep',
 	description: 'Checks the bot/discord latency.',
 	aliases: [],
 
@@ -12,10 +12,10 @@ module.exports = {
 	**/
 	execute(message, args) {
 		var timer = message.createdTimestamp;
-		message.channel.send('Questioning my reality...')
-			.then(function(pong) {
-				timer = pong.createdTimestamp - timer;
-				pong.edit('Pong! (' + timer + 'ms)')
+		message.channel.send('Oh yeah, speak my language...')
+			.then(function(boop) {
+				timer = boop.createdTimestamp - timer;
+				boop.edit('Boop! (' + timer + 'ms)')
 			})
 			.catch(error => {console.error(error)});
 	}
