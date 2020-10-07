@@ -1,12 +1,12 @@
-const ping = require("../commands/ping");
+const ping = require('../commands/ping');
 const prefix = process.env.PREFIX;
 
-const Discord = require("discord.js");
-const fs = require("fs");
+const Discord = require('discord.js');
+const fs = require('fs');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./../commands/${file}`);
 	client.commands.set(command.name, command);
@@ -23,7 +23,8 @@ module.exports = (client, message) => {
 	const commandName = args.shift().toLowerCase();
 	console.log(commandName);
 	if (!client.commands.has(commandName)) {
-		message.channel.send("That command doesn't exist, silly goober.");
+		console.log(client.commands.get(commandName));
+		message.channel.send('That command doesn\'t exist, silly goober.');
 		return;
 	}
 
@@ -33,6 +34,6 @@ module.exports = (client, message) => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.channel.send("Uhh, something broke while trying to do that.");
+		message.channel.send('Uhh, something broke while trying to do that.');
 	}
 }
