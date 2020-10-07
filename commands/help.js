@@ -5,7 +5,7 @@ const prefix = process.env.PREFIX;
  * @param {Discord.Message} message
 **/
 module.exports = {
-	name: "ping",
+	name: "help",
 	description: "Checks the bot/discord latency.",
 	usage: "\`${prefix}${command.name}\`",
 	execute(message, args) {
