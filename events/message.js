@@ -14,7 +14,10 @@ exports.init = function init(client) {
 	for (const file of commandFiles) {
 		const command = require(`./../commands/${file}`);
 		client.commands.set(file, command);
+		console.log('Adding command ' + file);
+		console.log(command);
 	}
+	console.log(client.commands.size + ' commands registered.');
 }
 
 /**
@@ -31,6 +34,11 @@ exports.execute = function execute(client, message) {
 	// Split args and check if command/alias exists
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
+
+	console.log('Received request for command: ' + commandName);
+	console.log(client.commands.size + ' commands found in command list');
+	client.commands.forEach(keys => {console.log(keys)})
+
 	const command = client.commands.get(commandName) 
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	if (!command) {
