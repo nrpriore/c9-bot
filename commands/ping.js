@@ -10,13 +10,15 @@ module.exports = {
 	 * @param {Discord.Message} message
 	 * @param {string[]} args
 	**/
-	execute(message, args) {
+	async execute(message, args) {
 		var timer = message.createdTimestamp;
-		message.channel.send('Questioning my reality...')
-			.then(function(pong) {
-				timer = pong.createdTimestamp - timer;
-				pong.edit('Pong! (' + timer + 'ms)')
-			})
-			.catch(error => {console.error(error)});
+		try {
+			const pong = await message.channel.send('Questioning my reality...');
+			timer = pong.createdTimestamp - timer;
+			await pong.edit('Pong! (' + timer + 'ms)');
+		}
+		catch (error) {
+			console.error(error);
+		}
 	}
 }
