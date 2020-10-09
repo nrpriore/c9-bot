@@ -10,13 +10,15 @@ module.exports = {
 	 * @param {Discord.Message} message
 	 * @param {string[]} args
 	**/
-	execute(message, args) {
-		var timer = message.createdTimestamp;
-		message.channel.send('Oh yeah, speak my language...')
-			.then(function(boop) {
-				timer = boop.createdTimestamp - timer;
-				boop.edit('Boop! (' + timer + 'ms)')
-			})
-			.catch(error => {console.error(error)});
+	async execute(message, args) {
+		try {
+			var timer = message.createdTimestamp;
+			const boop = await message.channel.send('Oh yeah, speak my language...');
+			timer = boop.createdTimestamp - timer;
+			await boop.edit('Boop! (' + timer + 'ms)');
+		}
+		catch (error) {
+			console.error(error);
+		}
 	}
 }

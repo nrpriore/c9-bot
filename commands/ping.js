@@ -11,8 +11,8 @@ module.exports = {
 	 * @param {string[]} args
 	**/
 	async execute(message, args) {
-		var timer = message.createdTimestamp;
 		try {
+			var timer = message.createdTimestamp;
 			const pong = await message.channel.send('Questioning my reality...');
 			timer = pong.createdTimestamp - timer;
 			await pong.edit('Pong! (' + timer + 'ms)');
