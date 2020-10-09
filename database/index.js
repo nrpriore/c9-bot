@@ -6,7 +6,7 @@ module.exports = {
 	async query(text, params) {
 		const start = Date.now();
 		const res = await db.any(text, params);
-		const duration = Date.now() - start;
+		const duration = (Date.now() - start) + 'ms';
 		console.log('executed query', { text, duration, rows: res.rowCount });
 		return res;
 	},
