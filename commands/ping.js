@@ -14,8 +14,8 @@ module.exports = {
 		try {
 			var timer = message.createdTimestamp;
 			const pong = await message.channel.send('Questioning my reality...');
-			timer = pong.createdTimestamp - timer;
-			await pong.edit('Pong! (' + timer + 'ms)');
+			timer = pong.createdTimestamp - timer - args[0];
+			await pong.edit('Pong! (Client: ' + timer + 'ms, DB: ' + args[0] + 'ms)');
 		}
 		catch (error) {
 			console.error(error);

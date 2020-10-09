@@ -14,8 +14,8 @@ module.exports = {
 		try {
 			var timer = message.createdTimestamp;
 			const boop = await message.channel.send('Oh yeah, speak my language...');
-			timer = boop.createdTimestamp - timer;
-			await boop.edit('Boop! (' + timer + 'ms)');
+			timer = boop.createdTimestamp - timer - args[0];
+			await boop.edit('Boop! (Client: ' + timer + 'ms, DB: ' + args[0] + 'ms)');
 		}
 		catch (error) {
 			console.error(error);

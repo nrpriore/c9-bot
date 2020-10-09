@@ -34,8 +34,11 @@ exports.execute = async function execute(client, message) {
 	}
 
 	// Check if this event is regiestered as active for this server
+	var db_duration;
 	try {
+		const db_start = Date.now();
 		const data = await db.query('event_reg').get(message.guild.id, 'message');
+		db_duration = Date.now() - db_start;
 	}
 	catch(error) {
 		console.error(error);
@@ -59,6 +62,9 @@ exports.execute = async function execute(client, message) {
 
 	// Execute the command
 	try {
+		if(commandName === 'ping' || commandName == 'beep') {
+			args.push(db_duration);
+		}
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
