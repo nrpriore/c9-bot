@@ -1,4 +1,4 @@
-const db = require('./../database/index.js');
+const db = require('./../index.js');
 
 
 exports.get = async (guild, event) => {
