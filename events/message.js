@@ -34,7 +34,13 @@ exports.execute = async function execute(client, message) {
 	}
 
 	// Check if this event is regiestered as active for this server
-	const data = db.query('event_reg').get(message.guild.id, 'message');
+	try {
+		const data = await db.query('event_reg').get(message.guild.id, 'message');
+	}
+	catch(error) {
+		console.error(error);
+		return;
+	}
 
 	// Split args and check if command/alias exists
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
