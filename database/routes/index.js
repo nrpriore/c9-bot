@@ -6,9 +6,11 @@ const routes = new Collection();
 exports.init = function init() {
 	const files = fs.readdirSync('./database/routes').filter(file => file.endsWith('.js'));
 	for (const file of files) {
-		const route = require(`./${file}`);
-		const routeName = file.split(".")[0];
-		routes.set(routeName, route);
+		if(file != 'index.js') {
+			const route = require(`./${file}`);
+			const routeName = file.split(".")[0];
+			routes.set(routeName, route);
+		}
 	}
 	console.log(routes.size + ' database routes registered.')
 }
