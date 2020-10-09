@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
+const db = require('./../database/routes/index.js');
 
 const prefix = process.env.PREFIX;
 
@@ -15,8 +16,8 @@ exports.init = function init(client) {
 		const command = require(`./../commands/${file}`);
 		const commandName = file.split(".")[0];
 		client.commands.set(commandName, command);
-		console.log('Adding command ' + commandName);
-		console.log(command);
+		//console.log('Adding command ' + commandName);
+		//console.log(command);
 	}
 	console.log(client.commands.size + ' commands registered.');
 }
@@ -26,11 +27,14 @@ exports.init = function init(client) {
  * @param {Discord.Client} client
  * @param {Discord.Message} message
 **/
-exports.execute = function execute(client, message) {
+exports.execute = async function execute(client, message) {
 	// Only allow messages with the correct prefix and from human users
 	if (!message.content.startsWith(prefix) || message.author.bot) {
 		return;
 	}
+
+	// Check if this event is regiestered as active for this server
+	const data = db.query('event_reg').get(message.guild.id, 'message');
 
 	// Split args and check if command/alias exists
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
