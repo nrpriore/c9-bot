@@ -5,9 +5,16 @@ const db = pgp(process.env.DATABASE_URL);
 module.exports = {
 	async query(text, params) {
 		const start = Date.now();
-		const res = await db.any(text, params);
+		var res;
+		try {
+			res = await db.any(text, params);
+		}
+		catch(error) {
+			console.error(error);
+		}
 		const duration = (Date.now() - start) + 'ms';
 		console.log('executed query', { text, duration, rows: res.rowCount });
+		console.log(res);
 		return res;
 	},
 }
