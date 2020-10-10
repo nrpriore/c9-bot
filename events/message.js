@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const db = require('./../database/routes/index.js');
+const event_reg = require('./../database/routes/event_reg.js');
 
 const prefix = process.env.PREFIX;
 
@@ -37,7 +38,8 @@ exports.execute = async function execute(client, message) {
 	var db_duration;
 	try {
 		const db_start = Date.now();
-		const data = await db.query('event_reg').get(message.guild.id, 'message');
+		const active = await event_reg.get(message.guild.id, 'message');
+		console.log(active);
 		db_duration = Date.now() - db_start;
 	}
 	catch(error) {
@@ -50,8 +52,8 @@ exports.execute = async function execute(client, message) {
 	const commandName = args.shift().toLowerCase();
 
 	console.log('Received request for command: ' + commandName);
-	console.log(client.commands.size + ' commands found in command list');
-	client.commands.forEach(keys => {console.log(keys)})
+	//console.log(client.commands.size + ' commands found in command list');
+	//client.commands.forEach(keys => {console.log(keys)})
 
 	const command = client.commands.get(commandName) 
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
