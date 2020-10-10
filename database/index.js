@@ -8,10 +8,12 @@ module.exports = {
 		var res;
 		try {
 			res = await db.any(text, params);
+			console.log(res);
 		}
 		catch(error) {
 			console.error(error);
 		}
+		console.log(res);
 		const duration = (Date.now() - start) + 'ms';
 		console.log('executed query', { text, duration, rows: res.rowCount });
 		return res;
